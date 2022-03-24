@@ -58,6 +58,17 @@ func (f optionFunc) apply(log *Logger) {
 	f(log)
 }
 
+func WithCustom() Option {
+	return optionFunc(func(logger *Logger) {
+		logger.print = &printer{
+			enab:   logger.levelEnabler,
+			level:  zapcore.CustomLevel,
+			print:  logger.delegate.Custom,
+			printf: logger.delegate.Customf,
+		}
+	})
+}
+
 // WithDebug configures a Logger to print at zap's DebugLevel instead of
 // InfoLevel.
 // It only affects the Printf, Println and Print methods, which are only used in the gRPC v1 grpclog.Logger API.

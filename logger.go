@@ -177,6 +177,14 @@ func (log *Logger) Check(lvl zapcore.Level, msg string) *zapcore.CheckedEntry {
 	return log.check(lvl, msg)
 }
 
+// Custom logs a message at CustomLevel. The message includes any fields passed
+// at the log site, as well as any fields accumulated on the logger.
+func (log *Logger) Custom(msg string, fields ...Field) {
+	if ce := log.check(CustomLevel, msg); ce != nil {
+		ce.Write(fields...)
+	}
+}
+
 // Debug logs a message at DebugLevel. The message includes any fields passed
 // at the log site, as well as any fields accumulated on the logger.
 func (log *Logger) Debug(msg string, fields ...Field) {

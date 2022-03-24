@@ -26,6 +26,7 @@ import (
 )
 
 const (
+	CustomLevel = zapcore.CustomLevel
 	// DebugLevel logs are typically voluminous, and are usually disabled in
 	// production.
 	DebugLevel = zapcore.DebugLevel

@@ -40,6 +40,7 @@ func TestTestLogger(t *testing.T) {
 
 	log := NewLogger(ts)
 
+	log.Custom("custom log")
 	log.Info("received work order")
 	log.Debug("starting work")
 	log.Warn("work may fail")
@@ -50,6 +51,7 @@ func TestTestLogger(t *testing.T) {
 	}, "log.Panic should panic")
 
 	ts.AssertMessages(
+		"CUSTOM\tcustom log",
 		"INFO	received work order",
 		"DEBUG	starting work",
 		"WARN	work may fail",

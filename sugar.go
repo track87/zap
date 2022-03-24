@@ -92,6 +92,11 @@ func (s *SugaredLogger) With(args ...interface{}) *SugaredLogger {
 	return &SugaredLogger{base: s.base.With(s.sweetenFields(args)...)}
 }
 
+func (s *SugaredLogger) Custom(args ...interface{}) {
+	s.log(CustomLevel, "", args, nil)
+}
+
+
 // Debug uses fmt.Sprint to construct and log a message.
 func (s *SugaredLogger) Debug(args ...interface{}) {
 	s.log(DebugLevel, "", args, nil)
@@ -126,6 +131,11 @@ func (s *SugaredLogger) Panic(args ...interface{}) {
 // Fatal uses fmt.Sprint to construct and log a message, then calls os.Exit.
 func (s *SugaredLogger) Fatal(args ...interface{}) {
 	s.log(FatalLevel, "", args, nil)
+}
+
+// Customf uses fmt.Sprintf to log a templated message.
+func (s *SugaredLogger) Customf(template string, args ...interface{}) {
+	s.log(CustomLevel, template, args, nil)
 }
 
 // Debugf uses fmt.Sprintf to log a templated message.

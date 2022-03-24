@@ -76,7 +76,7 @@ func WrapOptions(zapOpts ...zap.Option) LoggerOption {
 //   logger := zaptest.NewLogger(t, zaptest.WrapOptions(zap.AddCaller()))
 func NewLogger(t TestingT, opts ...LoggerOption) *zap.Logger {
 	cfg := loggerOptions{
-		Level: zapcore.DebugLevel,
+		Level: zapcore.CustomLevel,
 	}
 	for _, o := range opts {
 		o.applyLoggerOption(&cfg)
