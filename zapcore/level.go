@@ -32,13 +32,13 @@ var errUnmarshalNilLevel = errors.New("can't unmarshal a nil *Level")
 type Level int8
 
 const (
-	// CustomLevel logs
-	CustomLevel Level = iota -1
 	// DebugLevel logs are typically voluminous, and are usually disabled in
 	// production.
-	DebugLevel
+	DebugLevel Level = iota -1
 	// InfoLevel is the default logging priority.
 	InfoLevel
+	// CustomLevel logs
+	CustomLevel
 	// WarnLevel logs are more important than Info, but don't need individual
 	// human review.
 	WarnLevel
